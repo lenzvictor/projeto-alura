@@ -1,73 +1,520 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgroMáquinas | Maquinário Agrícola</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f6f2;
+            color: #222;
+        }
+
+        /* MENU */
+        header {
+            background: #173b1c;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #9be15d;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #9be15d;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 7%;
+            background:
+                linear-gradient(rgba(0, 40, 10, 0.7), rgba(0, 40, 10, 0.7)),
+                url("https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=80")
+                center/cover;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #8bc34a;
+            color: #173b1c;
+            padding: 15px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #b4e87a;
+            transform: translateY(-3px);
+        }
+
+        /* SEÇÕES */
+        section {
+            padding: 80px 7%;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo h2 {
+            font-size: 38px;
+            color: #173b1c;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #666;
+        }
+
+        /* MÁQUINAS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card h3 {
+            color: #246b2a;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* SOBRE */
+        .sobre {
+            background: #173b1c;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .sobre h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #9be15d;
+        }
+
+        .sobre p {
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .sobre img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        /* TABELA */
+        .tabela-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #246b2a;
+            color: white;
+            padding: 18px;
+            text-align: left;
+        }
+
+        td {
+            padding: 18px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f0f7ed;
+        }
+
+        /* CONTATO */
+        .contato {
+            background: #e8f0e4;
+        }
+
+        .contato-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .contato-box input,
+        .contato-box textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .contato-box textarea {
+            height: 130px;
+            resize: none;
+        }
+
+        .contato-box button {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: #0e2812;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer span {
+            color: #9be15d;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 800px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .sobre {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <header>
+        <div class="logo">🌱 AgroMáquinas</div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#maquinas">Máquinas</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#modelos">Modelos</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+
+    <!-- INÍCIO -->
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <h1>Potência para o campo.</h1>
+
+            <p>
+                Soluções em maquinário agrícola para aumentar a
+                produtividade, reduzir custos e transformar o trabalho
+                no campo.
+            </p>
+
+            <a href="#maquinas" class="btn">
+                Conheça nossas máquinas
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MÁQUINAS -->
+    <section id="maquinas">
+
+        <div class="titulo">
+            <h2>Nosso Maquinário</h2>
+            <p>Equipamentos desenvolvidos para diferentes necessidades do campo.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1605338198618-d6b7d8b6d8f6?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>🚜 Tratores</h3>
+
+                    <p>
+                        Máquinas versáteis para preparo do solo,
+                        plantio, transporte e diversas operações agrícolas.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>🌾 Colheitadeiras</h3>
+
+                    <p>
+                        Equipamentos de alta capacidade para realizar
+                        colheitas com eficiência e produtividade.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>🌱 Plantadeiras</h3>
+
+                    <p>
+                        Precisão no plantio para garantir melhor
+                        distribuição das sementes e aproveitamento do solo.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>🚛 Implementos</h3>
+
+                    <p>
+                        Implementos agrícolas para aragem, preparo,
+                        transporte e manutenção das áreas de cultivo.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+    <section class="sobre" id="sobre">
+
+        <div>
+
+            <h2>Força que move o agronegócio</h2>
+
+            <p>
+                A AgroMáquinas oferece soluções para produtores que
+                buscam mais eficiência e tecnologia no campo.
+            </p>
+
+            <br>
+
+            <p>
+                Nosso objetivo é facilitar o trabalho agrícola por meio
+                de máquinas modernas, resistentes e preparadas para
+                diferentes tipos de produção.
+            </p>
+
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1000&q=80">
+
+    </section>
+
+
+    <!-- MODELOS -->
+    <section id="modelos">
+
+        <div class="titulo">
+
+            <h2>Modelos de Máquinas</h2>
+
+            <p> <!DOCTYPE html>
   <html lang="pt-br">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Blog Tech</title>
-    
-    <style>
-        /* --- CONFIGURAÇÕES GERAIS --- */
-        body {
-            background-color: #c2c2c2; /* Um fundo cinza claro para destacar os blocos */
-            margin: 0;
-            font-family: sans-serif;   /* Fonte mais moderna e limpa */
-        }
+       <meta name="viewport"
+     content="width=device-width, initial-scale=1.0">
+           <title>Blog</title>
+            <style>
+             header{
+                background-color: #183c63;
+                color:#FFFFFF;
+                text-align: center;
+                 max-width: 800px;
+                 margin: 0 auto;
+                 }
 
-        /* --- ESTILIZAÇÃO DO CABEÇALHO --- */
-        header {
-            background-color: #183C63; /* Azul escuro */
-            color: #FFFFFF;            /* Texto branco (ótimo contraste) */
-            text-align: center;        /* Centraliza o texto */
-            max-width: 800px;          /* Largura máxima de 800px */
-            margin: 0 auto;            /* Centraliza o bloco na tela */
-            padding: 16px;             /* Espaçamento interno */
-        }
+             main {
+                background-color: #FFFFFF;
+                 color: #183c63;
+              max-width: 800px;
+           margin: 0 auto;
+                padding: 16px;
+                  display: flex;
+               }
+             img{
+             width: 80px;
+             height: 80px;
+             }
+             </style>
+               </head>
+            <body>
+       <header>
+             <h1>Meu blog tech</h1>
+           <p>Vou compartilhar conhecimentos sobre
+         tecnologia e programação</p>
+              </header>
+                   <main>
+                <img src="imagem-blog.png" alt="Encontro de carros rebaixados ao pôr do sol em um espaço urbano moderno. Em destaque, carros esportivos e customizados com estilo stance e widebody, com luzes de neon e público ao fundo.
+                ">
+               <div>
+                Confira alguns exemplos de equipamentos e suas aplicações.
+            </p>
 
-        /* --- ESTILIZAÇÃO DO CONTEÚDO PRINCIPAL --- */
-        main {
-            background-color: #FFFFFF; /* Fundo branco */
-            color: #183C63;            /* Texto azul escuro */
-            text-align: center;        /* Centraliza o texto */
-            max-width: 800px;          /* Largura máxima de 800px */
-            margin: 0 auto;            /* Centraliza o bloco na tela */
-            padding: 16px;             /* Espaçamento interno */
-        }
-á
-        /* --- ESTILIZAÇÃO DAS IMAGENS --- */
-        img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;         /* Garante que a imagem não fique distorcida */
-        }
-    </style>
- </head>
- <body>
+        </div>
 
-    <header>
-        <h1>Meu blog tech</h1>
-        <p>Vou compartilhar conhecimentos sobre tecnologia e programação</p>
-    </header>
+        <div class="tabela-container">
 
-    <main>
-        <h2>Meu primeiro post</h2>
-        <p>Por: Victor lenz</p>
-        <p>Boas-vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidades da área de tecnologia.</p>
-        
-        <hr> <h3>Passo a Passo</h3>
-        <ol style="display: inline-block; text-align: left;">
-            <li>Primeiro passo</li>
-            <li>Segundo passo</li>
-            <li>Terceiro passo</li>
-        </ol>
+            <table>
 
-        <h3>Meus Equipamentos</h3>
-        <ul style="display: inline-block; text-align: left;">
-            <li>Computador</li>
-            <li>Teclado</li>
-            <li>Mouse</li>
-        </ul>
-    </main>
+                <thead>
 
- </body>
-  </html>
+                    <tr>
+                        <th>Máquina</th>
+                        <th>Aplicação</th>
+                        <th>Potência</th>
+                        <th>Categoria</th>
+                    </tr>
 
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Trator Rural 120</td>
+                        <td>Preparo do solo</td>
+                        <td>120 CV</td>
+                        <td>Trator</td>
+                    </tr>
+
+                    <tr>
+                        <td>Colheitadeira Agro 500</td>
+                        <td>Colheita de grãos</td>
+                        <td>350 CV</td>
+                        <td>Colheitadeira</td>
+                    </tr>
+
+                    <tr>
+                        <td>Plantadeira Precision</td>
+                        <td>Plantio</td>
+                        <td>Compatível com tratores</td>
+                        <td>Plantadeira</td>
+                    </tr>
+
+                    <tr>
+                        <td>Grade Aradora 24</td>
